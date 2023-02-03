@@ -8,10 +8,22 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GraphComponent } from './components/graph/graph.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent, GraphComponent],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    GraphComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    HighchartsChartModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
