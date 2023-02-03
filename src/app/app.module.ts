@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GraphComponent } from './components/graph/graph.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { ChangeCompareTickerComponent } from './components/change-compare-ticker/change-compare-ticker.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     LoginComponent,
     DashboardComponent,
     GraphComponent,
+    ChangeCompareTickerComponent,
   ],
   imports: [
     BrowserModule,
