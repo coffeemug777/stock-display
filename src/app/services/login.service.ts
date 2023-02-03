@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 export type User = {
   id: number;
   username: string;
@@ -26,7 +27,8 @@ const usersHardcoded = [
 })
 export class LoginService {
   users = new Map<string, User>();
-  constructor() {
+  loggedUsers = new Map<string, User>();
+  constructor(private router: Router) {
     usersHardcoded.forEach((user) => {
       this.users.set(user.username, user);
     });
@@ -35,8 +37,18 @@ export class LoginService {
   login(username: string, password: string) {
     const user = this.users.get(username);
     if (!!user && user.password === password) {
+      this.loggedUsers.set(user.username, user);
       return { error: '', user };
     }
     return { error: 'username/password not valid' };
+  }
+
+  logout(username: string) {
+    if (this.loggedUsers.get(username)) {
+      this.loggedUsers.delete(username);
+      this.router.navigate(['']);
+    } else {
+      console.log('damn username not found', username, this.loggedUsers);
+    }
   }
 }

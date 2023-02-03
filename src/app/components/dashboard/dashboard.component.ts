@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
+import { LoginService, User } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +9,12 @@ import { User } from 'src/app/services/login.service';
 })
 export class DashboardComponent {
   user!: User;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private loginService: LoginService) {
     this.user = this.router.getCurrentNavigation()?.extras.state as User;
   }
 
-  ngOnInit() {
-    console.log(this.router.getCurrentNavigation(), this.activatedRoute);
+  logout($event: MouseEvent) {
+    $event.preventDefault();
+    this.loginService.logout(this.user.username);
   }
 }
