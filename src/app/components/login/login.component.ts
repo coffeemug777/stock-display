@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   username = '';
   password = '';
@@ -18,6 +19,7 @@ export class LoginComponent {
       if (userResult.error === '') {
         console.log('move to dashboard');
         this.error = '';
+        this.router.navigate(['/dashboard'], { state: userResult.user });
       } else {
         this.error = userResult.error;
       }
