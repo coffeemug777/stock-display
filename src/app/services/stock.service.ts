@@ -10,13 +10,18 @@ import pypl from '../mocks/pypl.json';
 export class StockService {
   stocksHardcoded = [aapl, ino, pltr, pypl];
   stockMap = new Map();
+  tickerList: string[] = [];
+
   constructor() {
     this.translateStock();
   }
 
   translateStock() {
     this.stocksHardcoded.forEach((stock) => {
+      const symbol = stock['Meta Data']['2. Symbol'];
+      this.tickerList.push(symbol);
       let editedData: any[] = [];
+
       const monthlyTimeSeries: any = stock['Monthly Time Series'];
       Object.keys(monthlyTimeSeries).forEach((key) => {
         editedData.push({
@@ -25,8 +30,12 @@ export class StockService {
         });
       });
 
-      this.stockMap.set(stock['Meta Data']['2. Symbol'], editedData);
+      this.stockMap.set(symbol, editedData);
     });
+  }
+
+  getAvailableTickers() {
+    return this.tickerList;
   }
 
   getRandomStock() {
