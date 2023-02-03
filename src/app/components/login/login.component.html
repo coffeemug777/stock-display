@@ -1,0 +1,32 @@
+<div class="login-container">
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">@</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="username"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">@</span>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="password"
+      aria-label="password"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="password"
+    />
+  </div>
+  <button
+    (click)="loginClick()"
+    type="button"
+    class="btn btn-primary login-button"
+  >
+    Login
+  </button>
+  <p class="bg-warning" *ngIf="error !== ''">{{ error }}</p>
+</div>
