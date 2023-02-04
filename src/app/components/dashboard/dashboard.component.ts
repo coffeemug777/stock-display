@@ -44,6 +44,16 @@ export class DashboardComponent {
     this.loginService.logout(this.user.username);
   }
 
+  updateGraph(tickers: string[]) {
+    const results: any[] = [];
+    tickers.forEach((ticker) => {
+      results.push(this.stockService.getStockByTicker(ticker));
+    });
+
+    this.stocks = results;
+    console.log('result ', this.stocks);
+  }
+
   open(content: string | TemplateRef<any>) {
     console.log('compare clicked');
     this.modalService
@@ -59,6 +69,7 @@ export class DashboardComponent {
 
           if (tickersApplied.length) {
             console.log(tickersApplied);
+            this.updateGraph(tickersApplied);
           } else {
             console.log('nothing applied');
           }

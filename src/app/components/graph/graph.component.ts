@@ -19,6 +19,16 @@ export class GraphComponent {
         type: 'line',
         data: this.stocks[0]?.data,
       },
+      // {
+      //   type: 'line',
+      //   data: this.stocks[0]?.data,
+      //   visible: false,
+      // },
+      // {
+      //   type: 'line',
+      //   data: this.stocks[0]?.data,
+      //   visible: false,
+      // },
     ],
     xAxis: {
       type: 'datetime',
@@ -32,6 +42,32 @@ export class GraphComponent {
   };
 
   updateGraph() {}
+
+  ngOnChanges() {
+    if (this.stocks.length) {
+      this.linechart.series = [];
+      this.stocks.forEach((element, i) => {
+        console.log('here?', i);
+        this.linechart.series?.push({
+          type: 'line',
+          name: element.symbol,
+          data: element.data,
+          visible: true,
+        });
+        // if (this.linechart.series?.length) {
+        //   console.log('here?2', i);
+        //   this.linechart.series[i] = {
+        //     type: 'line',
+        //     name: element.symbol,
+        //     data: element.data,
+        //     visible: true,
+        //   };
+        // }
+      });
+      console.log(this.linechart);
+      this.updateFlag = true;
+    }
+  }
 
   ngOnInit() {
     if (this.linechart.series?.length) {
