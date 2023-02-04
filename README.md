@@ -1,6 +1,9 @@
 # StockDisplay
 
+Date Created: 2023-02-04
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
+Node version used is 16.19.0
+NPM version used is 8.19.3
 
 ## Development server
 
