@@ -1,14 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { GraphComponent } from '../graph/graph.component';
 
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let routerStub = {
+    getCurrentNavigation: () => ({
+      extras: {
+        state: {
+          id: 0,
+          name: 'Denny',
+        },
+      },
+    }),
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
+      imports: [RouterTestingModule],
+      declarations: [DashboardComponent, GraphComponent],
+      providers: [{ provide: Router, useValue: routerStub }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);
