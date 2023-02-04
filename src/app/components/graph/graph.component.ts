@@ -19,7 +19,7 @@ export class GraphComponent {
   @Input()
   stocks: any[] = [];
 
-  public chart: any;
+  public chart!: ChartJS;
 
   updateFlag = false;
 

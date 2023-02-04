@@ -2,7 +2,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService, User } from 'src/app/services/login.service';
-import { StockService } from 'src/app/services/stock.service';
+import { StockData, StockService } from 'src/app/services/stock.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ import { StockService } from 'src/app/services/stock.service';
 })
 export class DashboardComponent {
   user!: User;
-  stocks: any[] = [];
+  stocks: StockData[] = [];
   closeResult: any;
   dd1 = 'Select Ticker';
   dd2 = 'Select Ticker';

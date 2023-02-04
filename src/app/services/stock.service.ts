@@ -4,6 +4,37 @@ import ino from '../mocks/ino.json';
 import pltr from '../mocks/pltr.json';
 import pypl from '../mocks/pypl.json';
 
+export type MetaData = {
+  '1. Information': string;
+  '2. Symbol': string;
+  '3. Last Refreshed': string;
+  '4. Time Zone': string;
+};
+
+export type TimeSeries = {
+  [key: string]: {
+    '1. open': string;
+    '2. high': string;
+    '3. low': string;
+    '4. close': string;
+    '5. volume': string;
+  };
+};
+
+export type MonthlyTimeSeries = Record<string, TimeSeries>;
+
+export type Stock = {
+  'Meta Data': MetaData;
+  'Monthly Time Series': MonthlyTimeSeries;
+};
+
+export type DataPoint = {
+  x: string;
+  y: number;
+};
+
+export type StockData = { symbol: string; data: DataPoint[] };
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +51,7 @@ export class StockService {
     this.stocksHardcoded.forEach((stock) => {
       const symbol = stock['Meta Data']['2. Symbol'];
       this.tickerList.push(symbol);
-      let editedData: any[] = [];
+      let editedData: DataPoint[] = [];
 
       const monthlyTimeSeries: any = stock['Monthly Time Series'];
       Object.keys(monthlyTimeSeries).forEach((key) => {
@@ -42,7 +73,7 @@ export class StockService {
     return this.tickerList;
   }
 
-  getRandomStock() {
+  getRandomStock(): StockData {
     const max = this.stocksHardcoded.length - 1;
     const min = 0;
     const random = Math.floor(Math.random() * (max - min + 1) + min);
