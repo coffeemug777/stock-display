@@ -1,6 +1,15 @@
 import { Component, Input } from '@angular/core';
-import * as Highcharts from 'highcharts';
+import {
+  Chart as ChartJS,
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title,
+} from 'chart.js';
+import 'chart.js/auto';
 
+ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
@@ -10,74 +19,38 @@ export class GraphComponent {
   @Input()
   stocks: any[] = [];
 
-  Highcharts: typeof Highcharts = Highcharts;
+  public chart: any;
+
   updateFlag = false;
 
-  linechart: Highcharts.Options = {
-    series: [
-      {
-        type: 'line',
-        data: this.stocks[0]?.data,
-      },
-      // {
-      //   type: 'line',
-      //   data: this.stocks[0]?.data,
-      //   visible: false,
-      // },
-      // {
-      //   type: 'line',
-      //   data: this.stocks[0]?.data,
-      //   visible: false,
-      // },
-    ],
-    xAxis: {
-      type: 'datetime',
-    },
-    chart: {
-      type: 'line',
-    },
-    title: {
-      text: '',
-    },
-  };
-
-  updateGraph() {}
-
   ngOnChanges() {
-    if (this.stocks.length) {
-      this.linechart.series = [];
-      this.stocks.forEach((element, i) => {
-        console.log('here?', i);
-        this.linechart.series?.push({
-          type: 'line',
-          name: element.symbol,
-          data: element.data,
-          visible: true,
-        });
-        // if (this.linechart.series?.length) {
-        //   console.log('here?2', i);
-        //   this.linechart.series[i] = {
-        //     type: 'line',
-        //     name: element.symbol,
-        //     data: element.data,
-        //     visible: true,
-        //   };
-        // }
-      });
-      console.log(this.linechart);
-      this.updateFlag = true;
+    if (this.chart) {
+      this.chart.data.datasets = this.buildData();
+      this.chart.update();
     }
   }
 
-  ngOnInit() {
-    if (this.linechart.series?.length) {
-      this.linechart.series[0] = {
-        type: 'line',
-        name: this.stocks[0].symbol,
-        data: this.stocks[0].data,
-      };
-    }
+  buildData() {
+    const datasets = this.stocks.map((stock) => ({
+      label: stock.symbol,
+      data: stock.data,
+    }));
+    return datasets;
+  }
 
-    this.updateFlag = true;
+  drawChart() {
+    this.chart = new ChartJS('MyChart', {
+      type: 'line',
+      data: {
+        datasets: this.buildData(),
+      },
+      options: {
+        aspectRatio: 2.5,
+      },
+    });
+  }
+
+  ngOnInit() {
+    this.drawChart();
   }
 }
