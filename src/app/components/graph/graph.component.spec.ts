@@ -8,9 +8,8 @@ describe('GraphComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GraphComponent ]
-    })
-    .compileComponents();
+      declarations: [GraphComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GraphComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,20 @@ describe('GraphComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should handle changes ', () => {
+    component.stocks = [{ symbol: 'test1', data: [] }];
+    component.chart.destroy();
+    component.ngOnInit();
+    const updateSpy = spyOn(component.chart, 'update').and.stub();
+
+    expect(component.chart.data.datasets.length).toBeGreaterThan(0);
+
+    component.stocks.push({ symbol: 'test2', data: [] });
+    component.ngOnChanges();
+
+    expect(component.chart.data.datasets.length).toEqual(2);
+    expect(updateSpy).toHaveBeenCalled();
   });
 });

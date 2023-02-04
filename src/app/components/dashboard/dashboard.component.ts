@@ -51,43 +51,26 @@ export class DashboardComponent {
     });
 
     this.stocks = results;
-    console.log('result ', this.stocks);
   }
 
   open(content: string | TemplateRef<any>) {
-    console.log('compare clicked');
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          this.closeResult = `Closed with: ${result}`;
+      .result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
 
-          const tickersApplied = [];
-          if (this.dd1 !== 'Select Ticker') tickersApplied.push(this.dd1);
-          if (this.dd2 !== 'Select Ticker') tickersApplied.push(this.dd2);
-          if (this.dd3 !== 'Select Ticker') tickersApplied.push(this.dd3);
+        const tickersApplied = [];
+        if (this.dd1 !== 'Select Ticker') tickersApplied.push(this.dd1);
+        if (this.dd2 !== 'Select Ticker') tickersApplied.push(this.dd2);
+        if (this.dd3 !== 'Select Ticker') tickersApplied.push(this.dd3);
 
-          if (tickersApplied.length) {
-            console.log(tickersApplied);
-            this.updateGraph(tickersApplied);
-          } else {
-            console.log('nothing applied');
-          }
-        },
-        (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        if (tickersApplied.length) {
+          console.log(tickersApplied);
+          this.updateGraph(tickersApplied);
+        } else {
+          console.log('nothing applied');
         }
-      );
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+      });
   }
 
   ngOnInit() {
