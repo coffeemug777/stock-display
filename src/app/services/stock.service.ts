@@ -34,6 +34,10 @@ export class StockService {
     });
   }
 
+  getStockByTicker(ticker: string) {
+    return { symbol: ticker, data: this.stockMap.get(ticker) };
+  }
+
   getAvailableTickers() {
     return this.tickerList;
   }
