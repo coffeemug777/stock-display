@@ -25,7 +25,7 @@ export class StockService {
       const monthlyTimeSeries: any = stock['Monthly Time Series'];
       Object.keys(monthlyTimeSeries).forEach((key) => {
         editedData.push({
-          x: new Date(key),
+          x: key,
           y: parseFloat(monthlyTimeSeries[key]['4. close']),
         });
       });
