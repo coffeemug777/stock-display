@@ -1,0 +1,9 @@
+<h2>New Ticker Input</h2>
+<input
+  type="text"
+  [(ngModel)]="newTicker"
+  id="new-ticker-input"
+  placeholder="enter ticker symbol here"
+/>
+
+<button (click)="buttonClick()" class="btn btn-primary">Get New Ticker</button>
