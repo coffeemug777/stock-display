@@ -73,6 +73,10 @@ export class DashboardComponent {
       });
   }
 
+  goToNewTickerInput() {
+    this.router.navigate(['new-ticker-input']);
+  }
+
   ngOnInit() {
     this.tickers = this.stockService.getAvailableTickers();
     this.stocks.push(this.stockService.getRandomStock());
