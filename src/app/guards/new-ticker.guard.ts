@@ -50,42 +50,5 @@ export class NewTickerGuard implements CanActivate {
       alert('no can do jose, ticker empty');
       return false;
     }
-
-    // return new Promise((res) => {
-    //   this.stockService.getStockByTickerAPI('IBM').subscribe(
-    //     (data) => {
-    //       console.log('data is ', data);
-    //       if (data) {
-    //         res(true);
-    //       }
-    //     },
-    //     (error) => {
-    //       console.log('error api is ', error);
-    //       res(false);
-    //     }
-    //   );
-    // });
   }
 }
-
-/*
-canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return new Promise(res => {
-        this.authservice.isUserAuthenticatedbyType("type1").subscribe(
-            (data) => {
-                if (data === true) {
-                    res(true);
-                } else {
-                    this.router.navigate(['/']);
-                    res(false);
-                }
-            },
-            (error) => {
-                this.router.navigate(['/']);
-                res(false);
-            }
-        );
-    });
-}
-
-*/
