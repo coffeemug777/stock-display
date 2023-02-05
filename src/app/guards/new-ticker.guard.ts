@@ -16,19 +16,9 @@ export class NewTickerGuard implements CanActivate {
   constructor(private stockService: StockService, private router: Router) {}
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    console.log(
-      'guard run',
-      state,
-      this.router.getCurrentNavigation()?.extras.state
-    );
-
+    _route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot
+  ): Promise<boolean> | boolean {
     const routeState = this.router.getCurrentNavigation()?.extras.state;
     if (routeState) {
       const ticker = routeState['ticker'];
