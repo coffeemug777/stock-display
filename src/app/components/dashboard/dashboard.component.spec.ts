@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import {
   ComponentFixture,
   fakeAsync,
@@ -29,7 +30,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientModule],
       declarations: [DashboardComponent, GraphComponent],
       providers: [{ provide: Router, useValue: routerStub }, LoginService],
     }).compileComponents();

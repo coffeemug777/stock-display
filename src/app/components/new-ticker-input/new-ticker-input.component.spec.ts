@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { NewTickerInputComponent } from './new-ticker-input.component';
 
@@ -8,9 +9,9 @@ describe('NewTickerInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewTickerInputComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule],
+      declarations: [NewTickerInputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NewTickerInputComponent);
     component = fixture.componentInstance;

@@ -1,5 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NewTickerDisplayComponent } from './new-ticker-display.component';
 
 describe('NewTickerDisplayComponent', () => {
@@ -8,9 +10,17 @@ describe('NewTickerDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewTickerDisplayComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientModule, RouterTestingModule],
+      declarations: [NewTickerDisplayComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { data: { newData: { symbol: 'test', data: [] } } },
+          },
+        },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NewTickerDisplayComponent);
     component = fixture.componentInstance;
