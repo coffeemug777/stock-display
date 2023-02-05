@@ -8,17 +8,25 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GraphComponent } from './components/graph/graph.component';
-import { ChangeCompareTickerComponent } from './components/change-compare-ticker/change-compare-ticker.component';
-
+import { NewTickerInputComponent } from './components/new-ticker-input/new-ticker-input.component';
+import { NewTickerDisplayComponent } from './components/new-ticker-display/new-ticker-display.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
     GraphComponent,
-    ChangeCompareTickerComponent,
+    NewTickerInputComponent,
+    NewTickerDisplayComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
