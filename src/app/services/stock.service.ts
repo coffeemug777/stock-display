@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import aapl from '../mocks/aapl.json';
 import ino from '../mocks/ino.json';
 import pltr from '../mocks/pltr.json';
@@ -43,7 +46,7 @@ export class StockService {
   stockMap = new Map();
   tickerList: string[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.translateStock();
   }
 
@@ -65,6 +68,11 @@ export class StockService {
     });
   }
 
+  addLoadedDataFromApi(data: any) {
+    this.stocksHardcoded.push(data);
+    this.translateStock();
+  }
+
   getStockByTicker(ticker: string) {
     return { symbol: ticker, data: this.stockMap.get(ticker) };
   }
@@ -79,6 +87,16 @@ export class StockService {
     const random = Math.floor(Math.random() * (max - min + 1) + min);
     const symbol = this.stocksHardcoded[random]['Meta Data']['2. Symbol'];
     return { symbol, data: this.stockMap.get(symbol) };
+  }
+
+  getStockByTickerAPI(ticker: string) {
+    const APIKEY = 'XM9ZUC6EQJJG6HSL';
+    const url =
+      'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=' +
+      ticker +
+      '&apikey=' +
+      APIKEY;
+    return this.http.get(url);
   }
 }
 /*
