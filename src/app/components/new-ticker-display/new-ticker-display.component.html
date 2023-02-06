@@ -1,5 +1,5 @@
 <h2>New Ticker</h2>
-<app-graph *ngIf="stocks[0].data.length" [stocks]="stocks"></app-graph>
+<app-graph *ngIf="stocks[0].data?.length" [stocks]="stocks"></app-graph>
 <button class="btn btn-primary" (click)="backToDashboard()">
   Back to Dashboard
 </button>

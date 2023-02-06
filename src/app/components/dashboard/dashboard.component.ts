@@ -1,6 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService, User } from 'src/app/services/login.service';
 import { StockData, StockService } from 'src/app/services/stock.service';
 
