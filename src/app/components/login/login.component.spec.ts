@@ -7,8 +7,6 @@ import {
   tick,
 } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginService } from 'src/app/services/login.service';
 import { LoginComponent } from './login.component';

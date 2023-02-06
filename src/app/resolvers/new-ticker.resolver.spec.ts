@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { catchError, map, of } from 'rxjs';
+import { of } from 'rxjs';
 import { StockService } from '../services/stock.service';
 import aapl from '../mocks/aapl.json';
 import { NewTickerResolver } from './new-ticker.resolver';

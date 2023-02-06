@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-
 import { NewTickerInputComponent } from './new-ticker-input.component';
 
 describe('NewTickerInputComponent', () => {

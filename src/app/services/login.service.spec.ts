@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { LoginService } from './login.service';
 
 describe('LoginService', () => {

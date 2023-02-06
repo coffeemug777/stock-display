@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import aapl from '../mocks/aapl.json';
 import ino from '../mocks/ino.json';
 import pltr from '../mocks/pltr.json';

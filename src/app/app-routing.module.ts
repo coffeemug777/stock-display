@@ -4,7 +4,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewTickerDisplayComponent } from './components/new-ticker-display/new-ticker-display.component';
 import { NewTickerInputComponent } from './components/new-ticker-input/new-ticker-input.component';
-import { NewTickerGuard } from './guards/new-ticker.guard';
+//import { NewTickerGuard } from './guards/new-ticker.guard';
 import { NewTickerResolver } from './resolvers/new-ticker.resolver';
 
 const routes: Routes = [
