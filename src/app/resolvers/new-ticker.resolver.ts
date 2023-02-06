@@ -19,7 +19,6 @@ export class NewTickerResolver implements Resolve<any> {
     _state: RouterStateSnapshot
   ): Observable<any> {
     const routeState = this.router.getCurrentNavigation()?.extras.state;
-
     if (routeState) {
       const ticker = routeState['ticker'];
       return this.stockService.getStockByTickerAPI(ticker).pipe(
