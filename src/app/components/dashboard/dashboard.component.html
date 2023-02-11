@@ -1,5 +1,5 @@
 <h2>Hello {{ user.name }}</h2>
-<app-graph *ngIf="stocks[0].data.length" [stocks]="stocks"></app-graph>
+<app-graph *ngIf="stocks[0]?.data?.length" [stocks]="stocks"></app-graph>
 <div>
   <button class="btn btn-primary" (click)="open(content)">
     Change Ticker/Compare
